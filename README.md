@@ -3,41 +3,6 @@ trabajoVitonManu
 IA (3 puntos) – Readme.md
 – Explica en qué te ha ayudado la IA. Incluye el código inicial y las mejoras que has obtenido, explicando el proceso que has seguido.
 La IA nos ha ayudado en la sincronización de los problemas para que la carrera de los robots funcionara de forma eficiente.
-Este es el código inicial:
-import java.util.Random;
-
-public class Robot extends Thread {
-    private String nombre;
-    private static boolean carreraTerminada = false;
-
-    public Robot(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void run() {
-        Random random = new Random();
-        int recorrido = 0;
-        
-        while (!carreraTerminada) {
-            int avance = random.nextInt(10) + 1;
-            recorrido += avance;
-            System.out.println(nombre + " avanzó " + avance + " metros. Recorrido total: " + recorrido);
-            
-            if (recorrido >= 100) {
-                carreraTerminada = true;
-                System.out.println(nombre + " ha ganado la carrera");
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        Robot robotRojo = new Robot("Robot Rojo");
-        Robot robotAzul = new Robot("Robot Azul");
-
-        robotRojo.start();
-        robotAzul.start();
-    }
-}
 
  Y las mejoras que hemos implementado han sido el método volatile para garantizar que la carrera terminaba y determinaba un ganador, se ha introducido un mensaje que cuando el primer robot llega a la meta el otro robot se detiene ya que la carrera se da como finalizada. Y por último hemos separado el método "run" y hemos añadido el método "robot" para un mejor funcionamiento y manejo del hilo.
 
